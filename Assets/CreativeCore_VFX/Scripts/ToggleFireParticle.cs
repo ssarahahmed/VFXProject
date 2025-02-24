@@ -12,6 +12,8 @@ public class ToggleFireParticle : MonoBehaviour
     public ParticleSystem igniteParticle;
     public ParticleSystem extinguishParticle;
     public GameObject pointLight;
+    // added reference tonew particle system
+    public ParticleSystem fxEmbersParticle;
 
     bool isPlaying = true;
 
@@ -27,6 +29,8 @@ public class ToggleFireParticle : MonoBehaviour
             if(isPlaying)
             {
                 fireParticle.Stop();
+                if (fxEmbersParticle != null) // to stop the embers
+                    fxEmbersParticle.Stop();
                 pointLight.SetActive(false);
                 if (extinguishParticle != null)
                     extinguishParticle.Play();
@@ -35,6 +39,8 @@ public class ToggleFireParticle : MonoBehaviour
             else
             {
                 fireParticle.Play();
+                if (fxEmbersParticle != null) // to play the embers
+                    fxEmbersParticle.Play();
                 pointLight.SetActive(true);
                 if (igniteParticle != null)
                     igniteParticle.Play();
